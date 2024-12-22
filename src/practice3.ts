@@ -120,3 +120,53 @@ const u: User = {
   // error
   // telNumber: "00000000000",
 };
+
+type HasName = {
+  name: string;
+};
+
+type Family<Parent extends HasName, Child extends HasName> = {
+  mother: Parent;
+  father: Parent;
+  child: Child;
+};
+
+type Animal2 = {
+  name: string;
+};
+
+type Family2<Parent = Animal2, Child = Animal2> = {
+  mother: Parent;
+  father: Parent;
+  child: Child;
+};
+
+type V = Family2<string>;
+
+const arr: number[] = [1, 2, 3];
+
+// NG
+// const arr2: string[] = [123, -456];
+
+const arr3: boolean[] = [false, true];
+
+const arr4: Array<{
+  name: string;
+}> = [
+  {name: "hoge"},
+  {name: "fuga"},
+];
+
+const arr5: readonly number[] = [1, 10, 100];
+
+// NG
+// arr5[0] = -1000;
+
+let tuple: [string, number] = ["foo", 123];
+tuple = ["bar", 456];
+const strTuple = tuple[0];
+const numTuple = tuple[1];
+
+type UserTuple = [name: string, age: number];
+const haiku1135: UserTuple = ["haiku1135", 27];
+console.log(haiku1135[1]);
